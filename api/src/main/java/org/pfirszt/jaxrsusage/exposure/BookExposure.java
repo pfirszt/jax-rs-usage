@@ -1,4 +1,4 @@
-package exposures;
+package org.pfirszt.jaxrsusage.exposure;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

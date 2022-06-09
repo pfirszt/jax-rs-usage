@@ -4,6 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.6.RELEASE</version>
+        <relativePath/>
+    </parent>
+
     <groupId>org.pfirszt</groupId>
     <artifactId>jax-rs-usage</artifactId>
 
@@ -11,6 +18,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
+        <module>library</module>
         <module>business-logic</module>
         <module>api</module>
     </modules>
@@ -26,6 +34,63 @@
         <jdk.version>1.8</jdk.version>
 
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.tomcat.embed</groupId>
+                    <artifactId>tomcat-embed-websocket</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+        </dependency>
+    </dependencies>
 
     <dependencyManagement>
         <dependencies>
@@ -49,6 +114,7 @@
                 <artifactId>mockito-core</artifactId>
                 <version>${org.mockito.version}</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -108,8 +174,18 @@
                         </configuration>
                         <deployables>
                             <deployable>
-                                <location>api/target/jax-rs-usage.war</location>
+                                <location>library/target/jax-rs-usage-library.war</location>
                                 <type>war</type>
+                                <properties>
+                                    <context>library</context>
+                                </properties>
+                            </deployable>
+                            <deployable>
+                                <location>api/target/jax-rs-usage-api.war</location>
+                                <type>war</type>
+                                <properties>
+                                    <context>api</context>
+                                </properties>
                             </deployable>
                         </deployables>
                     </configuration>

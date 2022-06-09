@@ -1,3 +1,4 @@
+package org.pfirszt.jaxrsusage;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -6,10 +7,11 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-import exposures.BookExposure;
+import org.pfirszt.jaxrsusage.exposure.BookExposure;
+
 
 @ApplicationPath("/")
-public class JaxRsApplicationService extends Application{
+public class JaxRsApplication extends Application{
 
     @Override
     public Set<Class<?>> getClasses() {

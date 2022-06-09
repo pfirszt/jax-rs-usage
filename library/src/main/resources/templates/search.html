@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Library</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p th:text="'Welcome in our library'" />
+<p th:text="'You can browse google books and add them to local library here.'" />
+<p th:text="'Search: '" />
+
+<h1>Search google books</h1>
+<form action="#" th:action="@{/search}" th:object="${search}" method="post">
+    <p>Message: <input type="text" th:field="*{term}" /></p>
+    <p><input type="submit" value="Search" /> <input type="reset" value="Reset" /></p>
+</form>
+
+</body>
+</html>
